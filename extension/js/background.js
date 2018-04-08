@@ -11,19 +11,31 @@ const config = {
   },
 }
 
+const createTab = async () => new Promise(resolve =>
+  chrome.tabs.create({ url: chrome.extension.getURL('result.html') }, tab => {
+    chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+      if (tabId === tab.id && changeInfo.status == 'complete') {
+        resolve({
+          status: 'ok',
+          tabId,
+          changeInfo,
+        })
+      }
+    })
+  }
+))
+
 const query = async type => {
   let data
   switch (type) {
     case 'SWIGGY':
+      const { status, tabId } = await createTab()
       data = await config.SWIGGY.fetcher()
       break
   }
-  chrome.tabs.create({ url: chrome.extension.getURL('result.html') }, tab => {
-    chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-      if (tabId === tab.id && changeInfo.status == 'complete') {
-        chrome.tabs.sendMessage(tabId, { data })
-      }
-    })
+  chrome.runtime.sendMessage({
+    actionType: 'DATA',
+    data,
   })
 }
 
