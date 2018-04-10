@@ -1,0 +1,41 @@
+.side-bar {
+  padding: 30px;
+  background-color: $white;
+  border-radius: 8px;
+  border: 1px solid $border-light;
+  .des {
+    margin-top: 15px;
+    line-height: 20px;
+    font-size: 12px;
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+  .line {
+    width: 20px;
+    height: 2px;
+    background-color: $brand-primary;
+    margin: 0 auto;
+  }
+  .parent {
+    margin: 30px 0;
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .child-nav {
+    margin: 30px 0;
+    .nav-link {
+      color: $font-color;
+      &.active {
+        .menu-item {
+          opacity: 1;
+        }
+      }
+      .menu-item {
+        padding: 15px 0;
+        font-size: 14px;
+        font-weight: 700;
+        opacity: 0.3;
+      }
+    }
+  }
+}

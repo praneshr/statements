@@ -1,2 +1,6 @@
 *.log
 node_modules
+app/data/*.json
+extension/app
+build
+app/styles/.DS_Store

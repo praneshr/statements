@@ -12,7 +12,7 @@ const config = {
 }
 
 const createTab = async () => new Promise(resolve =>
-  chrome.tabs.create({ url: chrome.extension.getURL('result.html') }, tab => {
+  chrome.tabs.create({ url: chrome.extension.getURL('app/statement.html') }, tab => {
     chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
       if (tabId === tab.id && changeInfo.status == 'complete') {
         resolve({

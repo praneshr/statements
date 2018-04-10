@@ -16,11 +16,8 @@ $('#go').click(() => {
     const type = getType(url)
     switch (type) {
       case 'SWIGGY':
-        // const data = await recursiveSwiggyFetcher()
-        chrome.tabs.create({ url: chrome.extension.getURL('result.html') }, tab => {
-          console.log(tab);
+        chrome.tabs.create({ url: chrome.extension.getURL('app/statement.html') }, tab => {
           chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-            console.log(tabId);
               if (tabId === tab.id && changeInfo.status == 'complete') {
                 chrome.tabs.onUpdated.removeListener(listener)
                 chrome.tabs.sendMessage(tabId, { data: '34' })
